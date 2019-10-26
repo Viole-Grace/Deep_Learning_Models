@@ -41,9 +41,9 @@ def convolutional_neural_network(data):
 
 	data = tf.reshape(data, shape=[-1, 28, 28, 1]) #give -1 and 1 as params, 28, 28 because they were the inital image sizes.
 
-	c1 = conv2d(data, weights['w_conv_1'])
+	c1 = tf.nn.relu(conv2d(data, weights['w_conv_1']) + biases['b_conv_1'])
 	c1 = maxpool2d(c1)
-	c2 = conv2d(c1, weights['w_conv_2'])
+	c2 = tf.nn.relu(conv2d(c1, weights['w_conv_2']) + biases['b_conv_2'])
 	c2 = maxpool2d(c2)
 	
 	fc = tf.reshape(c2, [-1, 7*7*64])
